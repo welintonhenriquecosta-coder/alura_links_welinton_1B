@@ -13,18 +13,7 @@
         }
 
         .cabecalho {
-            /* 🎨 Escolha uma cor abaixo:
-            #002b80 → Azul escuro
-            #006633 → Verde escuro
-            #b30000 → Vermelho escuro
-            #800080 → Roxo
-            #cc6600 → Laranja
-            #008080 → Turquesa
-            #333333 → Cinza escuro
-            #660033 → Vinho
-            #003366 → Azul marinho
-            */
-            background-color: #002b80;
+            background-color: #002b80; /* Azul escuro original */
             color: white;
             text-align: center;
             padding: 30px 20px;
@@ -37,13 +26,22 @@
         }
 
         .conteudo {
-            margin: 0 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
         }
 
         .icone {
             width: 60px;
             margin: 20px 0;
             display: block;
+        }
+
+        .post {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .post h2 {
@@ -60,8 +58,35 @@
         .texto {
             line-height: 1.6;
             color: #222;
-            border-left: 1px solid #ccc;
-            padding-left: 15px;
+            margin-bottom: 20px;
+        }
+
+        .area-curtidas {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .botao {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 6px 12px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            background: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .botao.ativo {
+            background: #ffcccc;
+            border-color: #ff4d4d;
+        }
+
+        .botao.ativo.legal {
+            background: #fff2cc;
+            border-color: #ffcc00;
         }
     </style>
 </head>
@@ -72,13 +97,51 @@
     </header>
 
     <main class="conteudo">
-                <img src="icone.png" alt="Ícone de tecnologia" class="icone">
+        <img src="icone.png" alt="Ícone de tecnologia" class="icone">
 
         <article class="post">
             <h2>Meu primeiro post</h2>
-            <p class="autor">Por: Welinton Henrique </p>
+            <p class="autor">Por: Welinton Henrique</p>
             <p class="texto">Boas-vindas ao meu novo blog! Aqui vou compartilhar dicas de programação e curiosidades da área de tecnologia.</p>
+
+            <div class="area-curtidas">
+                <button class="botao" id="btn-coracao" onclick="alternarCoracao()">❤️ <span id="cont-coracao">0</span></button>
+                <button class="botao legal" id="btn-legal" onclick="alternarLegal()">👍 <span id="cont-legal">0</span></button>
+            </div>
         </article>
     </main>
+
+    <script>
+        let coracao = 0;
+        let legal = 0;
+        let deuCoracao = false;
+        let deuLegal = false;
+
+        function alternarCoracao() {
+            if (!deuCoracao) {
+                coracao++;
+                deuCoracao = true;
+                document.getElementById('btn-coracao').classList.add('ativo');
+            } else {
+                coracao--;
+                deuCoracao = false;
+                document.getElementById('btn-coracao').classList.remove('ativo');
+            }
+            document.getElementById('cont-coracao').textContent = coracao;
+        }
+
+        function alternarLegal() {
+            if (!deuLegal) {
+                legal++;
+                deuLegal = true;
+                document.getElementById('btn-legal').classList.add('ativo');
+            } else {
+                legal--;
+                deuLegal = false;
+                document.getElementById('btn-legal').classList.remove('ativo');
+            }
+            document.getElementById('cont-legal').textContent = legal;
+        }
+    </script>
 </body>
 </html>
